@@ -3,9 +3,10 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-# Angular
+# Angular (client-side)
 client/node_modules/
 client/dist/
+client/.angular/cache/
 
 # MacOS
 .DS_Store
@@ -34,12 +35,8 @@ npm-debug.log*
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+.vscode/
+client/.vscode/
 
 # Miscellaneous
 /.angular/cache
