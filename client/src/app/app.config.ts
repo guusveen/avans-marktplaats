@@ -10,11 +10,12 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { AuthGuard } from './services/auth.guard'; // Importeer de AuthGuard
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'create-product', component: ProductCreateComponent },
+  { path: 'create-product', component: ProductCreateComponent, canActivate: [AuthGuard] }, // Beveiligde route
   { path: 'products', component: ProductListComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' }
 ];
@@ -32,9 +33,9 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     CommonModule,
-    AppComponent // Importeer AppComponent hier als het een standalone component is
+    AppComponent // Importeer AppComponent hier als standalone component
   ],
-  providers: [],
+  providers: [AuthGuard], // Voeg AuthGuard toe aan providers
   bootstrap: [AppComponent]
 })
 export class AppConfigModule { } // Exporteer de module correct
