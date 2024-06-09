@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken'); // Voeg deze regel toe
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 // Register a new user

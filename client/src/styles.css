@@ -66,6 +66,16 @@ h2 {
     margin-bottom: 1em;
 }
 
+/* Algemeen */
+a {
+    color: rgb(198, 0, 42);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 /* Formulieren */
 form {
     display: flex;
@@ -98,27 +108,35 @@ form button:hover {
     background-color: #b3002c;
 }
 
-/* Lijsten */
-.product-list {
-    list-style: none;
-    padding: 0;
+/* Product Cards */
+.product-card {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
-.product-list h3 {
+.product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 1em;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-details h3 {
     color: rgb(198, 0, 42);
+    margin: 0 0 0.5em 0;
+}
+
+.product-details p {
     margin: 0.5em 0;
-}
-
-.product-list p {
-    margin: 0.5em 0;
-}
-
-/* Algemeen */
-a {
-    color: rgb(198, 0, 42);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }

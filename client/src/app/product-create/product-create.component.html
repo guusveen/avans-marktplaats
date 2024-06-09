@@ -1,16 +1,20 @@
 <!-- product-create.component.html -->
 <div class="container">
   <h2>Create Product</h2>
-  <form (submit)="onSubmit()">
-      <label for="name">Product Name</label>
-      <input type="text" id="name" [(ngModel)]="name" name="name">
-
-      <label for="description">Description</label>
-      <input type="text" id="description" [(ngModel)]="description" name="description">
-
-      <label for="price">Price</label>
-      <input type="number" id="price" [(ngModel)]="price" name="price">
-
-      <button type="submit">Create Product</button>
+  <form (submit)="createProduct()">
+    <label for="name">Product Name:</label>
+    <input type="text" id="name" [(ngModel)]="name" name="name" required>
+  
+    <label for="description">Description:</label>
+    <input type="text" id="description" [(ngModel)]="description" name="description" required>
+  
+    <label for="price">Price:</label>
+    <input type="number" id="price" [(ngModel)]="price" name="price" required>
+  
+    <label for="image">Image:</label>
+    <input type="file" (change)="onFileSelected($event)">
+  
+    <button type="submit">Create Product</button>
   </form>
+  
 </div>

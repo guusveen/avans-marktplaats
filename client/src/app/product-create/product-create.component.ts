@@ -1,6 +1,7 @@
 // product-create.component.ts
 import { Component } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-create',
@@ -11,18 +12,31 @@ export class ProductCreateComponent {
   name: string = '';
   description: string = '';
   price: number = 0;
+  image: File | null = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
-  onSubmit() {
-    const product = {
-      name: this.name,
-      description: this.description,
-      price: this.price
-    };
+  onFileSelected(event: any) {
+    this.image = event.target.files[0];
+  }
 
-    this.productService.createProduct(product).subscribe(res => {
-      console.log('Product created', res);
-    });
+  createProduct() {
+    const productData = new FormData();
+    productData.append('name', this.name);
+    productData.append('description', this.description);
+    productData.append('price', this.price.toString());
+    if (this.image) {
+      productData.append('image', this.image, this.image.name);
+    }
+
+    this.productService.createProduct(productData).subscribe(
+      response => {
+        console.log('Product created successfully', response);
+        this.router.navigate(['/products']);
+      },
+      error => {
+        console.error('Error creating product', error);
+      }
+    );
   }
 }
