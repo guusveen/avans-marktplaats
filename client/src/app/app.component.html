@@ -4,6 +4,7 @@
         <li *ngIf="!authService.isAuthenticated()"><a routerLink="/register">Registreer</a></li>
         <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login">Log in</a></li>
         <li *ngIf="authService.isAuthenticated()"><a routerLink="/create-product">Product aanbieden</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/inbox">Inbox</a></li>
         <li *ngIf="authService.isAuthenticated()">Hallo, {{ authService.getUsername() }}</li>
         <li *ngIf="authService.isAuthenticated()"><a href="#" (click)="logout()">Log uit</a></li>
     </ul>

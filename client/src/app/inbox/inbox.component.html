@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Inbox</h2>
+    <div *ngFor="let message of messages" class="message-card">
+      <h3>Product: {{ message.product.name }}</h3>
+      <p><strong>From:</strong> {{ message.sender.username }}</p>
+      <p><strong>To:</strong> {{ message.receiver.username }}</p>
+      <p>{{ message.content }}</p>
+      <p><small>{{ message.timestamp | date: 'short' }}</small></p>
+    </div>
+  </div>
+  

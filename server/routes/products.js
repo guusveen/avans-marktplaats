@@ -34,8 +34,20 @@ router.post('/', authenticateToken, upload.single('image'), (req, res) => {
 
 // Get all products
 router.get('/', (req, res) => {
-  Product.find()
+  Product.find().populate('user', 'username') // Voeg populate toe om de gebruikersnaam op te halen
     .then(products => res.json(products))
+    .catch(err => res.status(400).json(err));
+});
+
+// Get product by ID
+router.get('/:id', (req, res) => {
+  Product.findById(req.params.id).populate('user', 'username') // Voeg populate toe om de gebruikersnaam op te halen
+    .then(product => {
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+      res.json(product);
+    })
     .catch(err => res.status(400).json(err));
 });
 

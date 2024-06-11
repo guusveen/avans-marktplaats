@@ -1,27 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-
-import { ProductCreateComponent } from './product-create.component';
+import { ProductDetailComponent } from './product-detail.component';
 import { ProductService } from '../services/product.service';
 import { AuthService } from '../services/auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('ProductCreateComponent', () => {
-  let component: ProductCreateComponent;
-  let fixture: ComponentFixture<ProductCreateComponent>;
+describe('ProductDetailComponent', () => {
+  let component: ProductDetailComponent;
+  let fixture: ComponentFixture<ProductDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule, RouterTestingModule],
-      declarations: [ProductCreateComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule], // Voeg deze regel toe
+      declarations: [ProductDetailComponent],
       providers: [ProductService, AuthService]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductCreateComponent);
+    fixture = TestBed.createComponent(ProductDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

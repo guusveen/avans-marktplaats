@@ -111,13 +111,18 @@ form button:hover {
 /* Product Cards */
 .product-card {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 1em;
     margin-bottom: 1em;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(198, 0, 42, 0.2);
+    cursor: pointer; /* Voeg een pointer cursor toe om klikbaarheid aan te geven */
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Voeg een lichte hover effect toe */
 }
 
 .product-image {
@@ -128,15 +133,85 @@ form button:hover {
     margin-right: 1em;
 }
 
-.product-details {
-    flex: 1;
-}
-
-.product-details h3 {
+/* Container for the product detail card */
+.product-detail-card {
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  /* Header section with product name and seller info */
+  .product-detail-card h2 {
     color: rgb(198, 0, 42);
-    margin: 0 0 0.5em 0;
-}
+    margin-bottom: 0.5em;
+  }
+  
+  .seller-info {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 1em;
+  }
+  
+  /* Image container to center the product image */
+  .image-container {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+  }
+  
+  /* Product image large */
+  .product-image-large {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 2px;
+  }
+  
+  /* Product description and price */
+  .product-description {
+    margin-top: 1em;
+    color: #333;
+  }
+  
+  .product-price {
+    margin-top: 0.5em;
+    font-weight: bold;
+    color: #198754;
+  }
 
-.product-details p {
-    margin: 0.5em 0;
-}
+  
+  /* Button styling */
+button {
+    background-color: rgb(198, 0, 42);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    margin-top: 0.5em;
+    display: block;
+  }
+  
+  button:hover {
+    background-color: #b3002c;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+  }
+
+  .message-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1em;
+    text-align: left;
+  }

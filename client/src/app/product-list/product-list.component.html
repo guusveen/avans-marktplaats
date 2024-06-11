@@ -1,7 +1,7 @@
 <!-- product-list.component.html -->
 <div class="container">
   <h2>Product List</h2>
-  <div *ngFor="let product of products" class="product-card">
+  <div *ngFor="let product of products" class="product-card" (click)="goToDetail(product._id)">
     <img [src]="'http://localhost:5000/' + product.image" alt="{{ product.name }}" class="product-image">
     <div class="product-details">
       <h3>{{ product.name }}</h3>

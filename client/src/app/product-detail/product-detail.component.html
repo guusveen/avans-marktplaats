@@ -1,0 +1,16 @@
+<div class="container">
+  <div *ngIf="product" class="product-detail-card">
+    <h2>{{ product.name }}</h2>
+    <p class="seller-info">Aangeboden door: {{ username }}</p>
+    <div class="image-container">
+      <img [src]="'http://localhost:5000/' + product.image" alt="{{ product.name }}" class="product-image-large">
+    </div>
+    <p class="product-description">{{ product.description }}</p>
+    <p class="product-price">{{ product.price | currency }}</p>
+    <div *ngIf="authService.isAuthenticated()">
+      <h3>Stuur een bericht naar de verkoper</h3>
+      <textarea [(ngModel)]="messageContent" rows="4" placeholder="Type your message"></textarea>
+      <button (click)="sendMessage()">Verstuur</button>
+    </div>
+  </div>
+</div>
