@@ -10,7 +10,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { AuthGuard } from './services/auth.guard'; // Importeer de AuthGuard
+import { AuthGuard } from './services/auth.guard';
+import {OfferCreateComponent} from "./offer-create/offer-create.component";
+import {OfferListComponent} from "./offer-list/offer-list.component"; // Importeer de AuthGuard
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -25,7 +27,9 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     ProductCreateComponent,
-    ProductListComponent
+    ProductListComponent,
+    OfferCreateComponent,
+    OfferListComponent
   ],
   imports: [
     BrowserModule,

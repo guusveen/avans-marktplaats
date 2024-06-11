@@ -17,19 +17,43 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Voeg een nieuw product toe met afbeelding
-router.post('/', authenticateToken, upload.single('image'), (req, res) => {
-  const { name, description, price } = req.body;
-  const newProduct = new Product({
-    name,
-    description,
-    price,
-    user: req.user.id,
-    image: req.file.path
-  });
+router.post('/', authenticateToken, upload.single('image'), async (req, res) => {
+  try {
+    const {name, description, price, endTime, image} = req.body;
+    const newProduct = new Product({
+      name,
+      description,
+      price,
+      user: req.user.id,
+      image,
+      endTime
+    });
+    const product = await newProduct.save();
+    res.json(product);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
-  newProduct.save()
-    .then(product => res.json(product))
-    .catch(err => res.status(400).json(err));
+router.post('/:id/offers', authenticateToken, async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ msg: 'Product not found' });
+    }
+    const { price } = req.body;
+    const newOffer = {
+      price,
+      user: req.user.id
+    };
+    product.offers.push(newOffer);
+    await product.save();
+    res.json(product);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 // Get all products

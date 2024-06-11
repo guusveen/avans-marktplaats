@@ -1,4 +1,3 @@
-// product.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,20 +7,31 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   private apiUrl = 'http://localhost:5000/api/products';
+  private offerUrl = 'http://localhost:5000/api/offers';
 
   constructor(private http: HttpClient) {}
 
-  createProduct(productData: FormData): Observable<any> {
+  createProduct(productData: any): Observable<any> {
     const token = localStorage.getItem('token');
+    console.log('Token:', token); // Debugging token
     const headers = new HttpHeaders({
-      'Authorization': `${token}` 
+      'Authorization': `Bearer ${token}`
     });
-    console.log('Token:', token); // Log de token
-    console.log('Headers:', headers); // Log de headers
+    console.log('Headers:', headers); // Debugging headers
     return this.http.post(this.apiUrl, productData, { headers });
   }
 
   getProducts(): Observable<any> {
     return this.http.get(this.apiUrl);
+  }
+
+  createOffer(productId: string, offerData: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    console.log('Token:', token); // Debugging token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    console.log('Headers:', headers); // Debugging headers
+    return this.http.post(`${this.apiUrl}/${productId}/offers`, offerData, { headers });
   }
 }
