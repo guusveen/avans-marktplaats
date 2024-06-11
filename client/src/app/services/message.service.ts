@@ -13,7 +13,7 @@ export class MessageService {
   sendMessage(receiverId: string, content: string, productId: string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `${token}`
     });
     return this.http.post(this.apiUrl, { receiver: receiverId, content, product: productId }, { headers });
   }
@@ -21,7 +21,7 @@ export class MessageService {
   getMessages(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `${token}`
     });
     return this.http.get(this.apiUrl, { headers });
   }
