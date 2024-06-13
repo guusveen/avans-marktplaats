@@ -38,6 +38,15 @@ export class AuthService {
     return null;
   }
 
+  public getUserId(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken ? decodedToken.id : null;
+    }
+    return null;
+  }
+  
   public getUserById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }

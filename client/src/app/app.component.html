@@ -1,8 +1,8 @@
 <nav>
     <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/register">Registreer</a></li>
-        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login">Log in</a></li>
+        <li><a routerLink="/"><b>Avans Marktplaats</b></a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/register">Registreren</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login">Inloggen</a></li>
         <li *ngIf="authService.isAuthenticated()"><a routerLink="/create-product">Product aanbieden</a></li>
         <li *ngIf="authService.isAuthenticated()"><a routerLink="/inbox">Inbox</a></li>
         <li *ngIf="authService.isAuthenticated()">Hallo, {{ authService.getUsername() }}</li>

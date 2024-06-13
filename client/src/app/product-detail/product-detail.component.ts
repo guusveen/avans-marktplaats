@@ -27,12 +27,14 @@ export class ProductDetailComponent implements OnInit {
     const productId = this.route.snapshot.paramMap.get('id');
     this.productService.getProductById(productId).subscribe(product => {
       this.product = product;
-      this.username = product.user ? product.user.username : 'Unknown'; // Zorg ervoor dat de gebruiker is opgenomen in de productgegevens
+      this.username = product.user ? product.user.username : 'Unknown';
+      console.log('Product user ID:', this.product.user._id); 
+      console.log('Authenticated user ID:', this.authService.getUserId());
     });
   }
 
   sendMessage() {
-    const receiverId = this.product.user;
+    const receiverId = this.product.user._id; 
     const productId = this.product._id;
     this.messageService.sendMessage(receiverId, this.messageContent, productId).subscribe(
       response => {
@@ -43,5 +45,14 @@ export class ProductDetailComponent implements OnInit {
         console.error('Error sending message', error);
       }
     );
+  }
+
+  markAsSold(): void {
+    this.productService.markAsSold(this.product._id).subscribe(updatedProduct => {
+      this.product.sold = updatedProduct.sold;
+      console.log('Product marked as sold', updatedProduct);
+    }, error => {
+      console.error('Error marking product as sold', error);
+    });
   }
 }

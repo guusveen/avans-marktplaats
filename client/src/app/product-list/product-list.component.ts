@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-product-list',
@@ -14,8 +15,8 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(res => {
-      this.products = res;
+    this.productService.getProducts().subscribe((products: Product[]) => {
+      this.products = products.filter((product: Product) => !product.sold);
     });
   }
 

@@ -51,4 +51,22 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+// Update product status to sold
+router.put('/:id/sold', authenticateToken, (req, res) => {
+  Product.findById(req.params.id)
+    .then(product => {
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+      if (product.user.toString() !== req.user.id) {
+        return res.status(403).json({ message: 'Unauthorized' });
+      }
+      product.sold = true;
+      product.save()
+        .then(updatedProduct => res.json(updatedProduct))
+        .catch(err => res.status(400).json(err));
+    })
+    .catch(err => res.status(400).json(err));
+});
+
 module.exports = router;

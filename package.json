@@ -1,0 +1,19 @@
+{
+    "name": "avans-marktplaats",
+    "version": "1.0.0",
+    "description": "Avans Marktplaats applicatie",
+    "scripts": {
+      "postinstall": "npm install --prefix client && npm install --prefix server && npm run build --prefix client",
+      "start": "node server/server.js",
+      "heroku-postbuild": "npm run build --prefix client"
+    },
+    "engines": {
+      "node": "16.x"
+    },
+    "dependencies": {
+      "express": "^4.19.2",
+      "mongoose": "^8.4.0",
+      "body-parser": "^1.20.2",
+      "cors": "^2.8.5"
+    }
+  }

@@ -6,11 +6,16 @@
       <img [src]="'http://localhost:5000/' + product.image" alt="{{ product.name }}" class="product-image-large">
     </div>
     <p class="product-description">{{ product.description }}</p>
-    <p class="product-price">{{ product.price | currency }}</p>
-    <div *ngIf="authService.isAuthenticated()">
+    <p class="product-price">Vraagprijs: {{ product.price | currency:'EUR' }}</p>
+    
+    <div *ngIf="authService.isAuthenticated() && product.user._id !== authService.getUserId()">
       <h3>Stuur een bericht naar de verkoper</h3>
-      <textarea [(ngModel)]="messageContent" rows="4" placeholder="Type your message"></textarea>
+      <textarea [(ngModel)]="messageContent" rows="4" placeholder="Typ je bericht"></textarea>
       <button (click)="sendMessage()">Verstuur</button>
+    </div>
+
+    <div *ngIf="authService.isAuthenticated() && product.user._id === authService.getUserId()">
+      <button (click)="markAsSold()">Markeer als verkocht</button>
     </div>
   </div>
 </div>

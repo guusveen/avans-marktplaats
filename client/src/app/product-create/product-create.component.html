@@ -1,20 +1,20 @@
 <!-- product-create.component.html -->
 <div class="container">
-  <h2>Create Product</h2>
+  <h2>Product aanbieden</h2>
   <form (submit)="createProduct()">
-    <label for="name">Product Name:</label>
+    <label for="name">Productnaam:</label>
     <input type="text" id="name" [(ngModel)]="name" name="name" required>
   
-    <label for="description">Description:</label>
+    <label for="description">Omschrijving:</label>
     <input type="text" id="description" [(ngModel)]="description" name="description" required>
   
-    <label for="price">Price:</label>
+    <label for="price">Vraagprijs:</label>
     <input type="number" id="price" [(ngModel)]="price" name="price" required>
   
-    <label for="image">Image:</label>
+    <label for="image">Plaatje:</label>
     <input type="file" (change)="onFileSelected($event)">
   
-    <button type="submit">Create Product</button>
+    <button type="submit">Product aanbieden</button>
   </form>
   
 </div>
