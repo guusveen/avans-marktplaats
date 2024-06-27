@@ -35,4 +35,28 @@ describe('ProductService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(dummyProducts);
   });
+
+  it('should create a product via POST', () => {
+    const dummyProduct = new FormData();
+    dummyProduct.append('name', 'Product 1');
+    dummyProduct.append('description', 'Description 1');
+    dummyProduct.append('price', '100');
+    dummyProduct.append('image', 'image1.jpg');
+
+    const dummyResponse = {
+      name: 'Product 1',
+      description: 'Description 1',
+      price: 100,
+      image: 'uploads/image1.jpg',
+      _id: '1'
+    };
+
+    service.createProduct(dummyProduct).subscribe(response => {
+      expect(response).toEqual(dummyResponse);
+    });
+
+    const req = httpMock.expectOne('http://localhost:5000/api/products');
+    expect(req.request.method).toBe('POST');
+    req.flush(dummyResponse);
+  });
 });
